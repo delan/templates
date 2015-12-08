@@ -1,7 +1,0 @@
-# pdflatex output
-latex/*.aux
-latex/*.log
-latex/*.out
-latex/*.pdf
-latex/*.toc
-latex/*.synctex.gz
