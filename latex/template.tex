@@ -2,12 +2,19 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[margin=1in]{geometry}
+\usepackage[british]{babel}
+\usepackage{csquotes}
+\usepackage[backend=biber,style=apa]{biblatex}
 \usepackage{parskip}
 \usepackage{graphicx}
 \usepackage{hyperref}
 \usepackage{listings}
 \usepackage{multirow}
 \usepackage[usenames,dvipsnames]{color}
+\usepackage{makeidx}
+\makeindex
+\DeclareLanguageMapping{british}{british-apa}
+\addbibresource{template.bib}
 \hypersetup{
 	colorlinks,
 	pdfauthor=Delan Azabani,
@@ -20,16 +27,77 @@
 \author{Delan Azabani}
 
 \pagenumbering{gobble}
-\thispdfpagelabel0
+\thispdfpagelabel{0}
 
 \begin{document}
 
 \maketitle
-
 \pagenumbering{roman}
+
+\vspace*{0.2\vsize}
+\hspace{0.1\hsize}
+\begin{minipage}{0.8\hsize}
+
+\section*{Abstract}
+
+The contents of this document serve as a placeholder, demonstrating some of
+the features of {\LaTeX} and \textsc{Bib\TeX} such as a table of contents, a
+list of figures, a list of tables, citations, a list of references, as well as
+an index.
+
+\end{minipage}
+
+\newpage
 \tableofcontents
+\newpage
+\renewcommand{\listfigurename}{List of figures}
+\listoffigures
+\newpage
+\renewcommand{\listtablename}{List of tables}
+\listoftables
 \newpage
 \pagenumbering{arabic}
 
+\section{The channel capacity of a noiseless, stateful channel}
+
+\textcite{Shannon1948} established the field of \emph{information
+theory}\index{information theory}, defining a general model of devices
+communicating over discrete and continuous channels, where these channels are
+optionally subject to noise. Concepts such as information \emph{entropy}
+\index{entropy} and \emph{redundancy}\index{redundancy} are also introduced in
+Shannon's work (\cite{Shannon1948}).
+
+Of particular relevance, Shannon suggests a means of calculating the channel
+capacity of a discrete, noiseless, and stateful protocol, in which a subset of
+symbols may be allowed for each state transition, and each symbol may have a
+unique but otherwise fixed duration. Because the only information about each
+state that is used in this calculation is its duration, any given symbol may
+assume different durations where it is valid for a given state transition.
+One may simply think of them as different symbols, and more broadly, think of
+symbols as unique to a given state transition, regardless of their appearance.
+
+We can form an algebraic representation of the durations of the valid symbols
+that may be used to transition from and to each given pair of states, arrange
+these expressions in a square matrix, find its determinant, and then find the
+logarithm of the maximum real zero of the resultant expression. This
+expression may be represented mathematically as
+
+\begin{equation}
+	\left|\sum_{s}{W^{-b_{ijs}}}-\delta_{ij}\right|=0
+\end{equation}
+
+where $W$ is an arbitrary variable that is used in the evaluation of the zeros
+of the function, $i$ and $j$ identify the source and destination states, as
+well as identify the rows and columns of the matrix, $s$ identifies a given
+symbol that is valid for a given state transition, $b$ is the duration of a
+given symbol, and $\delta$ is a constant that is equal to one where $i = j$,
+or zero where a given state transition changes the current state.
+
+\newpage
+\begin{sloppypar}
+	\printbibliography
+\end{sloppypar}
+\newpage
+\printindex
 
 \end{document}
